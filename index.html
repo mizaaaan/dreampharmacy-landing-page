@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Pharmacy — Mirpur-1, Dhaka</title>
+<meta name="description" content="Dream Pharmacy in Mirpur-1, Dhaka. Prescriptions, health products, and guidance from MD Mizanur Rahman (DMA).">
+<link rel="icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#F20000;
+    --teal:#00A99B;
+    --navy:#145A8C;
+    --ink:#333333;
+    --ink-soft:#666666;
+    --paper:#FFFFFF;
+    --paper-soft:#F1F8F7;
+    --line:#E4E4E0;
+    --radius:14px;
+    --wrap:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--navy);
+    font-weight:500;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 24px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn:focus-visible{outline:2.5px solid var(--navy);outline-offset:2px;}
+  .btn-primary{background:var(--red);color:#fff;}
+  .btn-primary:hover{box-shadow:0 8px 20px -8px rgba(242,0,0,.55);}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-outline:hover{border-color:var(--navy);color:var(--navy);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{width:38px;height:38px;object-fit:cover;border-radius:50%;}
+  .brand span{
+    font-family:'Fraunces', serif;font-weight:600;font-size:19px;letter-spacing:.01em;
+  }
+  .nav-links{display:flex;align-items:center;gap:32px;}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--red);}
+  .nav-cta{display:flex;align-items:center;gap:10px;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 40px;}
+  .hero .wrap{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;
+  }
+  .hero h1{font-size:52px;line-height:1.05;margin-top:14px;}
+  .hero .tagline{
+    font-family:'Fraunces', serif;font-style:italic;font-weight:500;
+    color:var(--red);font-size:19px;margin-top:14px;
+  }
+  .hero p.lede{margin-top:20px;font-size:16.5px;color:var(--ink-soft);max-width:46ch;}
+  .hero .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .cred-strip{
+    margin-top:34px;padding-top:18px;border-top:1px dashed var(--line);
+    font-size:12.5px;color:var(--ink-soft);letter-spacing:.03em;
+  }
+  .cred-strip b{color:var(--ink);}
+
+  .hero-art{position:relative;display:flex;align-items:center;justify-content:center;}
+  .cross-mark{
+    position:absolute;width:230px;height:230px;z-index:0;
+    transform:translate(38px,-30px);
+  }
+  .cross-mark::before,.cross-mark::after{
+    content:"";position:absolute;background:var(--red);border-radius:6px;
+  }
+  .cross-mark::before{width:100%;height:34%;top:33%;left:0;}
+  .cross-mark::after{width:34%;height:100%;left:33%;top:0;}
+  .portrait-ring{
+    position:relative;z-index:1;
+    width:320px;height:320px;border-radius:50%;
+    padding:8px;background:var(--paper);
+    box-shadow:0 20px 50px -20px rgba(20,90,140,.35);
+  }
+  .portrait-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  .portrait-tag{
+    position:absolute;bottom:6px;right:-6px;z-index:2;
+    background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;padding:7px 12px;border-radius:999px;
+    box-shadow:0 8px 18px -6px rgba(20,90,140,.5);
+  }
+
+  /* ---------- Blister divider (signature element) ---------- */
+  .blister{padding:8px 0 0;}
+  .blister-row{
+    display:flex;justify-content:center;gap:18px;padding-bottom:10px;
+  }
+  .pill{width:34px;height:16px;border-radius:20px;flex-shrink:0;}
+  .pill.a{background:linear-gradient(90deg,var(--teal) 50%, var(--navy) 50%);}
+  .blister-tear{border-top:1.5px dashed var(--line);}
+
+  /* ---------- Sections ---------- */
+  section{padding:76px 0;}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:34px;margin-top:10px;}
+  .section-head p{color:var(--ink-soft);margin-top:12px;font-size:15.5px;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;}
+  .cert-card{
+    background:var(--paper-soft);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;
+  }
+  .cert-name{font-family:'Fraunces',serif;font-size:22px;font-weight:600;}
+  .cert-role{color:var(--navy);font-size:13.5px;margin-top:4px;font-weight:500;}
+  .cred-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .cred-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft);}
+  .cred-list .pill{margin-top:5px;}
+  .cred-list b{color:var(--ink);font-weight:600;}
+  .about-copy p{color:var(--ink-soft);font-size:15.5px;margin-bottom:16px;}
+  .about-copy p:last-child{margin-bottom:0;}
+
+  /* Services */
+  .svc-note{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .svc-card{
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .svc-card:hover{border-color:var(--teal);transform:translateY(-3px);}
+  .svc-icon{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .svc-icon .pill{width:20px;height:9px;}
+  .svc-card h3{font-size:17px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;}
+  .svc-card p{font-size:14px;color:var(--ink-soft);margin-top:8px;}
+
+  /* Visit */
+  .visit{background:var(--paper-soft);}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .contact-rows{display:flex;flex-direction:column;}
+  .c-row{
+    display:flex;justify-content:space-between;gap:16px;padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .c-row:first-child{padding-top:0;}
+  .c-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .c-value{font-family:'IBM Plex Mono',monospace;font-size:14.5px;text-align:right;}
+  .c-value a:hover{color:var(--red);}
+  .hours-note{margin-top:20px;font-size:13.5px;color:var(--ink-soft);}
+  .map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+  .map-wrap iframe{width:100%;height:340px;border:0;display:block;}
+
+  /* Footer */
+  footer{padding:44px 0 30px;border-top:1px solid var(--line);}
+  .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .foot-brand{display:flex;align-items:center;gap:10px;}
+  .foot-brand img{width:30px;height:30px;border-radius:50%;object-fit:cover;}
+  .foot-brand span{font-family:'Fraunces',serif;font-weight:600;font-size:15.5px;}
+  .foot-tag{font-size:12.5px;color:var(--ink-soft);font-style:italic;font-family:'Fraunces',serif;}
+  .foot-note{font-size:12px;color:#999;margin-top:18px;text-align:center;}
+
+  /* WhatsApp floating button */
+  .wa-float{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    width:56px;height:56px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,.35);
+  }
+  .wa-float svg{width:28px;height:28px;}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;gap:40px;}
+    .hero-art{order:-1;}
+    .hero h1{font-size:40px;}
+    .about-grid{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .visit-grid{grid-template-columns:1fr;}
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;background:#fff;
+      flex-direction:column;align-items:flex-start;padding:20px 24px;
+      border-bottom:1px solid var(--line);gap:18px;display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-toggle{display:block;}
+    .nav-cta .btn-outline{display:none;}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:32px;}
+    .section-head h2{font-size:26px;}
+    .svc-grid{grid-template-columns:1fr;}
+    .portrait-ring{width:250px;height:250px;}
+    .cross-mark{width:180px;height:180px;transform:translate(24px,-18px);}
+    .c-value{text-align:right;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <a href="#top" class="brand">
+      <img src="assets/logo.jpg" alt="Dream Pharmacy logo">
+      <span>DREAM PHARMACY</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#visit">Visit Us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:+8801725752500" class="btn btn-outline">Call</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Neighborhood Pharmacy · Mirpur-1, Dhaka</p>
+        <h1>Dream Pharmacy</h1>
+        <p class="tagline">"To the satisfaction of Almighty"</p>
+        <p class="lede">A familiar medicine counter on Mazar Road — prescriptions filled carefully, questions answered without rushing you, and health guidance from a trained medical assistant.</p>
+        <div class="cta-row">
+          <a href="tel:+8801725752500" class="btn btn-primary">Call Now</a>
+          <a href="https://wa.me/8801830962035" class="btn btn-outline">WhatsApp Us</a>
+        </div>
+        <div class="cred-strip mono">
+          <b>DMA</b> · Noakhali Paramedical College (MATS) &nbsp;·&nbsp; <b>Reg. No.</b> 233141
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="cross-mark"></div>
+        <div class="portrait-ring">
+          <img src="assets/portrait.jpg" alt="MD Mizanur Rahman at Dream Pharmacy">
+        </div>
+        <div class="portrait-tag">MD Mizanur Rahman</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="blister wrap">
+    <div class="blister-row">
+      <div class="pill a"></div><div class="pill a"></div><div class="pill a"></div>
+      <div class="pill a"></div><div class="pill a"></div><div class="pill a"></div>
+      <div class="pill a"></div><div class="pill a"></div>
+    </div>
+    <div class="blister-tear"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">About</p>
+        <h2>Your neighborhood pharmacist</h2>
+        <p>Dream Pharmacy is run by a trained medical assistant who has worked the floors of real hospital emergency rooms — not just behind a counter.</p>
+      </div>
+      <div class="about-grid">
+        <div class="cert-card reveal">
+          <p class="cert-name">MD Mizanur Rahman</p>
+          <p class="cert-role">Diploma in Medical Assistant (DMA)</p>
+          <ul class="cred-list">
+            <li><div class="pill a"></div><span><b>Noakhali Paramedical College</b> (MATS)</span></li>
+            <li><div class="pill a"></div><span>Ex. Medical Assistant — <b>250 Bed General Hospital</b>, Noakhali</span></li>
+            <li><div class="pill a"></div><span>Ex. EMA — <b>Kashipur Al-Habib Hospital</b></span></li>
+            <li><div class="pill a"></div><span>Ex. EMA — <b>Kashipur Life Line Hospital</b></span></li>
+            <li><div class="pill a"></div><span>Registration No. <b>233141</b></span></li>
+          </ul>
+        </div>
+        <div class="about-copy reveal">
+          <p>Before opening the counter at Dream Pharmacy, Mizanur worked hands-on in hospital wards and emergency departments — the kind of experience that shapes how a pharmacy is run day to day: carefully, and without guesswork.</p>
+          <p>That background is why neighbors come back — not just for the medicine on the shelf, but for someone who can explain what it's for, how to take it, and when to see a doctor instead.</p>
+          <p>Dream Pharmacy sits on Mazar Road in Mirpur-1, an easy stop whether you're picking up a regular prescription or need something for today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="blister wrap">
+    <div class="blister-row">
+      <div class="pill a"></div><div class="pill a"></div><div class="pill a"></div>
+      <div class="pill a"></div><div class="pill a"></div><div class="pill a"></div>
+      <div class="pill a"></div><div class="pill a"></div>
+    </div>
+    <div class="blister-tear"></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Services</p>
+        <h2>What we help with</h2>
+        <p>The everyday essentials of a neighborhood pharmacy counter.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#FDE8E8"><div class="pill a"></div></div><h3>Prescription Medicines</h3><p>Filled carefully, with dosage explained in plain language.</p></div>
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#E4F5F3"><div class="pill a"></div></div><h3>Over-the-Counter Care</h3><p>Everyday medicine for colds, fever, pain, and minor ailments.</p></div>
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#E8F0F8"><div class="pill a"></div></div><h3>Health & Wellness Products</h3><p>Supplements, first-aid supplies, and personal care essentials.</p></div>
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#FDE8E8"><div class="pill a"></div></div><h3>Blood Pressure Check</h3><p>A quick, free check while you wait at the counter.</p></div>
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#E4F5F3"><div class="pill a"></div></div><h3>Medicine Guidance</h3><p>Straight answers on interactions, timing, and what to expect.</p></div>
+        <div class="svc-card reveal"><div class="svc-icon" style="background:#E8F0F8"><div class="pill a"></div></div><h3>WhatsApp Ordering</h3><p>Message your order ahead and skip the wait at the counter.</p></div>
+      </div>
+      <p class="svc-note">Services shown are a general starting point — happy to tailor this list to exactly what Dream Pharmacy offers.</p>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="visit">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Visit</p>
+        <h2>Find Dream Pharmacy</h2>
+        <p>On Mazar Road, 1st Colony — Mirpur-1, Dhaka.</p>
+      </div>
+      <div class="visit-grid">
+        <div class="reveal">
+          <div class="contact-rows">
+            <div class="c-row"><span class="c-label">Phone</span><span class="c-value"><a href="tel:+8801725752500">+880 1725‑752500</a></span></div>
+            <div class="c-row"><span class="c-label">WhatsApp</span><span class="c-value"><a href="https://wa.me/8801830962035">+880 1830‑962035</a></span></div>
+            <div class="c-row"><span class="c-label">Email</span><span class="c-value"><a href="mailto:avoidmizu@gmail.com">avoidmizu@gmail.com</a></span></div>
+            <div class="c-row"><span class="c-label">Address</span><span class="c-value">6‑B/B, 1st Colony<br>Mazar Road, Mirpur‑1<br>Dhaka‑1216</span></div>
+          </div>
+          <p class="hours-note">Hours vary — call or WhatsApp ahead to check we're open.</p>
+        </div>
+        <div class="map-wrap reveal">
+          <iframe src="https://www.google.com/maps?q=6-B%2FB%2C%201st%20Colony%2C%20Mazar%20Road%2C%20Mirpur-1%2C%20Dhaka-1216&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-brand">
+        <img src="assets/logo.jpg" alt="Dream Pharmacy logo">
+        <span>DREAM PHARMACY</span>
+      </div>
+      <p class="foot-tag">"To the satisfaction of Almighty"</p>
+    </div>
+    <p class="foot-note">© 2026 Dream Pharmacy, Mirpur‑1, Dhaka. Built for testing purposes.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/8801830962035" aria-label="Message on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 5.54-13.58ZM12.06 18.5a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.6 6.6 0 1 1 12.26-3.5 6.56 6.56 0 0 1-6.67 6.59Zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.61.77-.23.15-.42.05a5.4 5.4 0 0 1-1.6-.98 5.9 5.9 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4s.2-.23.3-.35.13-.2.2-.33a.36.36 0 0 0 0-.35c-.05-.1-.44-1.06-.6-1.45s-.32-.33-.44-.33-.24 0-.37 0a.72.72 0 0 0-.52.24 2.2 2.2 0 0 0-.68 1.63 3.8 3.8 0 0 0 .8 2.02 8.7 8.7 0 0 0 3.33 2.95c.47.2.83.32 1.11.41a2.67 2.67 0 0 0 1.23.08 2 2 0 0 0 1.32-.93 1.64 1.64 0 0 0 .11-.93c-.05-.08-.18-.13-.38-.23Z"/></svg>
+</a>
+
+<script>
+  var t = document.getElementById('navToggle');
+  var l = document.getElementById('navLinks');
+  t.addEventListener('click', function(){ l.classList.toggle('open'); });
+  l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ l.classList.remove('open'); }); });
+
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.15});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
