@@ -1,2 +1,2 @@
-# dreampharmacy-whatsapp-ecom
-https://mizaaaan.github.io/dreampharmacy-whatsapp-ecom/
+# dreampharmacy-landing-page
+https://mizaaaan.github.io/dreampharmacy-landing-page/
